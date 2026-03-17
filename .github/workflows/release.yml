@@ -1,14 +1,14 @@
-name: Build
+name: Release
 
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    tags: ['v*']
 
 jobs:
-  build:
+  release:
     runs-on: windows-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -20,8 +20,7 @@ jobs:
       - name: Publish
         run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: RemoteCommander
-          path: bin/Release/net8.0-windows/win-x64/publish/RemoteCommander.exe
+          files: bin/Release/net8.0-windows/win-x64/publish/RemoteCommander.exe

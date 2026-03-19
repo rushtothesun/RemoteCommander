@@ -163,11 +163,12 @@ namespace RemoteCommander
 
             var portalRow2 = new WrapPanel { Margin = new Thickness(0, 0, 0, 4) };
             portalRow2.Children.Add(MakeButton("Enter Portal", "EnterPortal", address));
+            portalRow2.Children.Add(MakeButton("New Instance", "NewInstance", address));
             stack.Children.Add(portalRow2);
 
             var otherRow = new WrapPanel { Margin = new Thickness(0, 2, 0, 6) };
             otherRow.Children.Add(MakeButton("Stash", "Stash", address));
-            otherRow.Children.Add(MakeButton("New Instance", "NewInstance", address));
+            otherRow.Children.Add(MakeButton("Stash $", "StashCurrency", address));
             stack.Children.Add(otherRow);
 
             stack.Children.Add(MakeToggleRow("AutoDep", "AutoDepositOn", "AutoDepositOff", address));
